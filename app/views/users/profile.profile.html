@@ -1,0 +1,18 @@
+<div class="container-fluid">
+	<h4>Avatar</h4>
+	<div class="row">
+			
+		<div
+			ng-repeat="p in user.providerData" 
+			class="provider-photo col-sm-4" 
+			ng-class="{active: profile.photoURL==p.photoURL}"
+			ng-click="vm.assignPhoto(p.photoURL)"
+			ng-if="p.photoURL">
+			<img ng-src="{{p.photoURL}}" alt="{{p.providerId}}">
+			<span class="provider-photo-pName">{{p.pName}}</span>
+		</div>
+	</div>
+	<div class="row">
+		
+	</div>
+</div>	
