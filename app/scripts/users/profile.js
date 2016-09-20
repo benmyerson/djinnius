@@ -43,7 +43,7 @@ angular.module('djinniusApp')
     	console.log('profile');
     })
     .controller('ProfileWorldsCtrl', function() {
-        
+
 
     })
     .controller('ProfileProfileCtrl', function($rootScope) {
@@ -55,7 +55,7 @@ angular.module('djinniusApp')
             if (!$rootScope.profile){
                 $rootScope.profile = {};
             }
-            $rootScope.profile.photoURL = url;    
+            $rootScope.profile.photoURL = url;
         };
 
         $rootScope.$watch('profile', function(newVal) {
@@ -68,11 +68,11 @@ angular.module('djinniusApp')
 
 
     })
-    .controller('ProfileAccountsCtrl', function($rootScope){
+    .controller('ProfileAccountsCtrl', function($rootScope, $mdDialog){
 
         this.linkProvider = function(p, alreadyLinked) {
 
-            var provider, 
+            var provider,
             	providerLinked;
 
             if (p === 'google') {
@@ -94,8 +94,8 @@ angular.module('djinniusApp')
                 if (!alreadyLinked) {
                     $rootScope.user.linkWithPopup(provider).then(function(result) {
                     	result.user.reauthenticate(result.credential);
-                    }, function(error) {
-                        console.error('link error', error);
+                    }).catch(function(error) {
+                      console.error('link error ', error, $mdDialog);
                     });
                 } else {
                     $rootScope.user.unlink(p + '.com').then(function(result) {
@@ -110,5 +110,5 @@ angular.module('djinniusApp')
             } else {
                 console.error('no user obj');
             }
-        };	
+        };
     });

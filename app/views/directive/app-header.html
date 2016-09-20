@@ -1,25 +1,21 @@
-    <header class="header">
-      <nav class="navbar navbar-default" role="navigation">
-        
-        <div class="navbar-header">
+<md-toolbar class="TopNav" md-whiteframe="5" ng-cloak>
+  <div class="md-toolbar-tools">
+    <span>
+      <a href ui-sref="main">
+        djinnius
+      </a>
+    </span>
+    <span flex>
+      <!-- app links? -->
+    </span>
+    <!-- fill up the space between left and right area -->
+    <small>{{ user.displayName || user.email }}</small>
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" href="#/">djinnius</a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-            <ul class="nav navbar-nav">
-             
-             
-            </ul>
-          </div>
-          
-      </nav>
-    </header>
+    <md-button aria-label="Profile" class="md-icon-button" ng-if="user" ui-sref="profile.profile">
+      <md-icon ng-if="user">account_circle</md-icon>
+    </md-button>
+    <md-button ui-sref="login" ng-if="!user">
+      Log In
+    </md-button>
+  </div>
+</md-toolbar>

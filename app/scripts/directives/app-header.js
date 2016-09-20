@@ -12,7 +12,7 @@ angular.module('djinniusApp')
       templateUrl: 'views/directive/app-header.html',
       restrict: 'E',
       link: function postLink() {
-        // element.text('this is the appHeader directive');
+
       }
     };
   });

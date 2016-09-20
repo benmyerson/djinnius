@@ -8,9 +8,9 @@ angular.module('djinniusApp')
             controller: 'LoginCtrl as vm',
             templateUrl: 'views/users/login.html'
         });
-        
+
     })
-    .controller('LoginCtrl', function() {
+    .controller('LoginCtrl', function($state) {
         var vm = this,
             auth = firebase.auth(),
             errors;
@@ -30,17 +30,32 @@ angular.module('djinniusApp')
         vm.login = function() {
         	if (validateLogin()) {
         		auth.signInWithEmailAndPassword(vm.login.email, vm.login.password)
-        			.then(function(fbUser) {
-        				console.log('logged in user', fbUser);
+        			.then(function() {
+                $state.go('profile.profile');
         			});
         	}
+        };
+
+        vm.loginWith = function(providerName) {
+          var provider;
+          if (providerName === 'google') {
+            provider = new firebase.auth.GoogleAuthProvider();
+          } else if(providerName === 'github'){
+            provider = new firebase.auth.GithubAuthProvider();
+          }
+          auth.signInWithPopup(provider).then(function() {
+            $state.go('profile.profile');
+          })
+          .catch(function(err){
+            console.error(err);
+          });
         };
 
         vm.register = function() {
             if (validateRegistration()) {
                 auth.createUserWithEmailAndPassword(vm.register.email, vm.register.password)
-                    .then(function(fbUser) {
-                        console.log('created user', fbUser);
+                    .then(function() {
+                      $state.go('profile.profile');
                     });
             }
         };
