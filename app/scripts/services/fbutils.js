@@ -13,7 +13,7 @@ angular.module('djinniusApp')
 
         // Public API here
         return {
-            
+
             bind: function(container, propName, ref) {
 
                 ref.on('value', function(snap) {
@@ -42,6 +42,19 @@ angular.module('djinniusApp')
                 });
 
                 return deferred.promise;
+            },
+
+            getFile: function(path) {
+              var storage = firebase.storage();
+              var storageRef = storage.ref(path);
+
+              return storageRef;
+            },
+
+            uploadFile: function(userPath, file) {
+              var storageRef = firebase.storage().ref();
+              var newFileRef = storageRef.child(userPath + '/' + file.name);
+              return newFileRef.put(file);
             }
         };
     });

@@ -1,77 +1,68 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm-5">
-            <h1>Login</h1>
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
-                    <div class="col-sm-9">
-                        <input type="email" ng-model="vm.login.email" class="form-control" id="inputEmail3" placeholder="Email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
-                    <div class="col-sm-9">
-                        <input type="password" ng-model="vm.login.password" class="form-control" id="inputPassword3" placeholder="Password">
-                    </div>
-                </div>
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <md-card flex>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Login</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <form>
 
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <button type="submit" ng-click="vm.login()" class="btn btn-default">Sign in</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="col-sm-6 col-sm-offset-1">
-        	<h1>Register</h1>
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label">Email</label>
-                    <div class="col-sm-8">
-                        <input type="email" ng-model="vm.register.email" class="form-control" id="inputEmail3" placeholder="Email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-4 control-label">Password</label>
-                    <div class="col-sm-8">
-                        <input type="password" ng-model="vm.register.password" class="form-control" id="inputPassword3" placeholder="Password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-4 control-label">Confirm Password</label>
-                    <div class="col-sm-8">
-                        <input type="password" ng-model="vm.register.confirmPass" class="form-control" id="inputPassword3" placeholder="Password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-8">
-                        <button type="submit" ng-click="vm.register()" class="btn btn-default">Sign Up</button>
-                    </div>
-                </div>
-            </form>			
-        </div>
-    </div>
-    <div class="row">
-    	<div class="text-center col-sm-12">
-    		<h4>or sign in with...</h4>
-    		<button type="submit" class="btn btn-social btn-google">
-    			<span class="fa fa-google"></span>
-    			Google
-    		</button>
-    		<button type="submit" disabled="true" title="Coming Soon" class="btn btn-social btn-github">
-    			<span class="fa fa-github"></span>
-    			Github
-    		</button>
-			<button type="submit" disabled="true" title="Coming Soon" class="btn btn-social btn-facebook">
-    			<span class="fa fa-facebook"></span>
-    			Facebook
-    		</button>
-    		<button type="submit" disabled="true" title="Coming Soon" class="btn btn-social btn-twitter">
-  				<span class="fa fa-twitter"></span>
-    			Twitter
-    		</button>
-    		
-    	</div>
-    </div>
-</div>
+          <md-input-container class="md-block">
+            <label>Email</label>
+            <input ng-model="vm.login.email" type="email">
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Password</label>
+            <input ng-model="vm.login.password" type="password">
+          </md-input-container>
+
+        </form>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-click="vm.login()">Login</md-button>
+      </md-card-actions>
+    </md-card>
+    <span class="Login__separator">
+      - OR -
+    </span>
+    <md-card flex>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Register</span>
+
+        </md-card-title-text>
+
+      </md-card-title>
+      <md-card-content>
+        <form>
+
+          <md-input-container class="md-block">
+            <label>Email</label>
+            <input ng-model="vm.register.email" type="email">
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Password</label>
+            <input ng-model="vm.register.password" type="password">
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Confirm Password</label>
+            <input ng-model="vm.register.confirmPass" type="password">
+          </md-input-container>
+
+        </form>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-click="vm.register()">Register</md-button>
+      </md-card-actions>
+    </md-card>
+</md-content>
+<md-content layout-padding>
+  <h2>Or Log in with a Provider</h2>
+  <md-button ng-click="vm.loginWith('google')">
+    Google
+  </md-button>
+  <md-button ng-click="vm.loginWith('github')">
+    Github
+  </md-button>
+</md-content>

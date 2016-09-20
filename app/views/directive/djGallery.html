@@ -1,0 +1,50 @@
+<div>
+  <label>
+    {{label}}
+    {{imagesMessage}}
+  </label>
+  <md-layout>
+    <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="5" md-row-height="4:3" md-gutter="4px">
+      <md-grid-tile md-rowspan="1" md-colspan="1"
+      ng-repeat="image in uploadedFiles" ng-click="enlargeImage($event, $index)"
+      ng-style="{backgroundImage:'url(' + image.path + ')'}" class="dj-gallery-img">
+
+        <md-grid-tile-footer ng-cloak class="gallery-image-footer"
+        layout-padding layout="row"
+        ng-click="enlargeImage(image)">
+          <span flex class="md-caption">{{image.name}}</span>
+          <md-fab-speed-dial md-direction="up" class="md-scale">
+            <md-fab-trigger>
+              <md-button aria-label="menu" class="md-fab md-secondary md-mini">
+                <md-icon>menu</md-icon>
+              </md-button>
+            </md-fab-trigger>
+
+            <md-fab-actions>
+
+              <md-button class="md-small md-raised md-icon-button" ng-class="{'md-accent': image.main}" aria-label="Set as Main">
+                <md-icon>star</md-icon>
+              </md-button>
+
+              <md-button class="md-small md-raised md-icon-button" aria-label="Edit">
+                <md-icon>edit</md-icon>
+              </md-button>
+
+              <md-button class="md-small md-warn md-raised md-icon-button" aria-label="Delete">
+                <md-icon>delete</md-icon>
+              </md-button>
+
+            </md-fab-actions>
+          </md-fab-speed-dial>
+        </md-grid-tile-footer>
+      </md-grid-tile>
+
+    </md-grid-list>
+
+
+    <div class="dj-gallery__drop-target" ng-click="openFilePicker()">
+      Click to Upload or Drop Images Here
+    </div>
+  </md-layout>
+  <input type="file" id="files" name="files" multiple="{{multiple}}" dj-onchange="fileRead">
+</div>

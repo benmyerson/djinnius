@@ -6,7 +6,7 @@
  * @description
  * # djinniusApp
  *
- * Main module of the application.	
+ * Main module of the application.
  */
 angular
     .module('djinniusApp', [
@@ -14,14 +14,18 @@ angular
         'ngCookies',
         'ngResource',
         'ngSanitize',
-        'ngTouch',
-        'ui.bootstrap',
+        'ngMessages',
+        'ngMaterial',
         'ui.router'
     ])
-
+    .config(function($mdThemingProvider) {
+      $mdThemingProvider.theme('default')
+        .primaryPalette('indigo')
+        .accentPalette('orange');
+    })
     .run(function($rootScope, FBUtils) {
     	var auth = firebase.auth();
-    	
+
 		$rootScope.getAuthData = function (firebaseUser) {
 			$rootScope.user = undefined;
 			$rootScope.profile = undefined;
@@ -29,14 +33,14 @@ angular
 
 			$rootScope.user = firebaseUser;
 			angular.extend($rootScope, {
-				googleLinked: false, 
+				googleLinked: false,
 				githubLinked: false,
 				twitterLinked: false,
 				facebookLinked: false
 			});
 
 			angular.forEach(firebaseUser.providerData, function(provider) {
-				
+
 				if (provider.providerId === 'google.com') {
 					provider.pName = 'google';
 					$rootScope.googleLinked = true;
@@ -58,5 +62,6 @@ angular
 			});
 		};
 
-		auth.onAuthStateChanged($rootScope.getAuthData);	
+		auth.onAuthStateChanged($rootScope.getAuthData);
+
     });
